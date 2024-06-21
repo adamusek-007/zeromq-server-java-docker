@@ -1,4 +1,4 @@
-package pl.pico;
+package pl.bic;
 
 import static org.junit.Assert.assertTrue;
 
