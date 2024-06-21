@@ -1,4 +1,4 @@
-package pico.server;
+package pl.pico;
 
 import java.sql.Connection;
 import java.sql.DriverManager;                                       
