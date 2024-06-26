@@ -1,0 +1,9 @@
+services:
+  server:
+    build: ./pico-server/
+    ports:
+      - 5555:5555
+  database:
+    build: ./database/
+    ports:
+      - 33060:33060
