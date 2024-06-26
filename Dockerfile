@@ -13,4 +13,6 @@ WORKDIR /pico-server
 
 COPY --from=build /pico-server/target/* /pico/
 
+EXPOSE 5555
+
 CMD ["java", "-jar", "/pico/pico-server-1.0-SNAPSHOT-jar-with-dependencies.jar"]
