@@ -2,8 +2,8 @@ FROM maven:3.9.7 AS build
 
 WORKDIR /pico-server
 
-COPY /pico-server/pom.xml .
-COPY /pico-server/src ./src
+COPY ./pom.xml .
+COPY ./src ./src
 
 RUN mvn clean package
 
