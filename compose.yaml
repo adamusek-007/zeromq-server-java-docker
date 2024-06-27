@@ -6,4 +6,4 @@ services:
   database:
     build: ./database/
     ports:
-      - 33060:33060
+      - 3306:3306
