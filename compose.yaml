@@ -3,7 +3,33 @@ services:
     build: ./pico-server/
     ports:
       - 5555:5555
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      DB_HOST: zeromq-server-java-docker-database
+      DB_PORT: 3306
+      DB_NAME: pico-data
+      DB_USER: user
+      DB_PASSWORD: password
+    networks:
+      - my_network
   database:
-    build: ./database/
+    image: mysql:8.2
+    container_name: zeromq-server-java-docker-database
     ports:
       - 3306:3306
+    environment:
+      MYSQL_DATABASE: pico-data
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - my_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+networks:
+  my_network:
+    driver: bridge
