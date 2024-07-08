@@ -15,10 +15,6 @@ import org.zeromq.SocketType;
 import org.zeromq.ZContext;
 import org.zeromq.ZMQ.Socket;
 
-/**
- * Hello world!
- *
- */
 public class App {
     private static String[] messageTypes = { "hell", "temp", "humi", "pres", "alti", "arqa", "gpsl", "dstl", "dstu",
             "brgh" };
@@ -42,8 +38,6 @@ public class App {
             }  
         } catch (Exception exception) {
             System.out.println(exception);
-        } finally {
-            System.out.println("Dziłama");
         }
         // createHashMap();
         try (ZContext context = new ZContext()) {
