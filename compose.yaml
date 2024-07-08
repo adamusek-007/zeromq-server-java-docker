@@ -13,7 +13,7 @@ services:
       DB_USER: user
       DB_PASSWORD: password
     networks:
-      - my_network
+      - pico_network
   database:
     image: mysql:8.2
     container_name: zeromq-server-java-docker-database
@@ -24,12 +24,24 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_USER: user
       MYSQL_PASSWORD: password
+    volumes:
+      - ./database/:/docker-entrypoint-initdb.d/
     networks:
-      - my_network
+      - pico_network
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 20s
       retries: 10
+  grafana:
+    ports:
+      - 3000:3000
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    container_name: grafana-ubuntu
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+    networks:
+      - pico_network
 networks:
-  my_network:
+  pico_network:
     driver: bridge
